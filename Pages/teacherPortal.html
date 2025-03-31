@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/Styles/teacherPortal.css">
+    
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Cuddle</span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="#"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-calendar-alt"></i> Calendar</a>
+            <a href="#"><i class="fas fa-book"></i> Courses</a>
+            <a href="#"><i class="fas fa-envelope"></i> Messages</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        </div>
+        
+        <div class="user-profile">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+            <span>Jane Doe</span>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard">
+        <div class="welcome-message">
+            <h1>Welcome Message <i class="fas fa-hand-wave"></i></h1>
+            <p>The standard Lorem Ipsum passage<br>
+            "Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+        <div class="grid-container">
+            <div class="card" onclick="navigateTo('attendance')">
+                <i class="fas fa-user-check"></i>
+                <h2>Attendance</h2>
+            </div>
+            <div class="card" onclick="navigateTo('homework')">
+                <i class="fas fa-book-open"></i>
+                <h2>Homework</h2>
+            </div>
+            <div class="card" onclick="navigateTo('result')">
+                <i class="fas fa-chart-line"></i>
+                <h2>Result</h2>
+            </div>
+            <div class="card" onclick="navigateTo('exam-routine')">
+                <i class="fas fa-clipboard-list"></i>
+                <h2>Exam Routine</h2>
+            </div>
+            <div class="card" onclick="navigateTo('solution')">
+                <i class="fas fa-lightbulb"></i>
+                <h2>Solution</h2>
+            </div>
+            <div class="card" onclick="navigateTo('notice-events')">
+                <i class="fas fa-bullhorn"></i>
+                <h2>Notice & Events</h2>
+            </div>
+            <div class="card add-account" onclick="navigateTo('add-account')">
+                <i class="fas fa-user-plus"></i>
+                <h2>Add Account</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>About Cuddle</h3>
+                <p>Cuddle School Management System provides comprehensive solutions for educational institutions to manage students, teachers, and academic operations.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Academic Calendar</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> School Events</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Teacher Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Lesson Plans</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Gradebook</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Professional Development</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Teaching Materials</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Education Street, Learning City, LC 56789</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>teachers@cuddleschool.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Cuddle School Management System. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+   <script src="/Scripts/teacherPortal.js"></script>
+</body>
+</html>

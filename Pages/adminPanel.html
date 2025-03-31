@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/Styles/adminPanel.css">
+    
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li id="students-menu" class="active"><i class="fa-solid fa-user-plus"></i> Students</li>
+                <li id="teachers-menu"><i class="fa-solid fa-chalkboard-teacher"></i> Teachers</li>
+                <li id="announcements-menu"><i class="fa-solid fa-bullhorn"></i> Announcements</li>
+                <li id="tasks-menu"><i class="fa-solid fa-tasks"></i> Tasks</li>
+                <li id="help-menu"><i class="fa-solid fa-question-circle"></i> Help</li>
+                <li id="profile-menu"><i class="fa-solid fa-user"></i> Profile</li>
+                <li id="logout-menu" class="logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</li>
+            </ul>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Students Section -->
+            <section id="students-section" class="card">
+                <div class="header-row">
+                    <h2>Student Management</h2>
+                    <button class="btn btn-primary add-btn" id="add-student-btn">
+                        <i class="fas fa-plus"></i> Add Student
+                    </button>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Section</th>
+                            <th>Contact</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="students-table-body">
+                        <!-- Students will be populated here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Teachers Section -->
+            <section id="teachers-section" class="card hidden">
+                <div class="header-row">
+                    <h2>Teacher Management</h2>
+                    <button class="btn btn-primary add-btn" id="add-teacher-btn">
+                        <i class="fas fa-plus"></i> Add Teacher
+                    </button>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Subject</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teachers-table-body">
+                        <!-- Teachers will be populated here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Announcements Section -->
+            <section id="announcements-section" class="card hidden">
+                <div class="header-row">
+                    <h2>Announcement Management</h2>
+                    <button class="btn btn-primary add-btn" id="add-announcement-btn">
+                        <i class="fas fa-plus"></i> Add Announcement
+                    </button>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Audience</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="announcements-table-body">
+                        <!-- Announcements will be populated here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Tasks Section -->
+            <section id="tasks-section" class="card hidden">
+                <div class="header-row">
+                    <h2>Task Management</h2>
+                    <button class="btn btn-primary add-btn" id="add-task-btn">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Assigned To</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tasks-table-body">
+                        <!-- Tasks will be populated here -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Student Modal -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="studentModalTitle">Add New Student</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="studentForm">
+                <input type="hidden" id="studentId">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="studentName">Full Name</label>
+                        <input type="text" id="studentName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentIdInput">Student ID</label>
+                        <input type="text" id="studentIdInput" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentSection">Section</label>
+                        <select id="studentSection" required>
+                            <option value="">Select Section</option>
+                            <option value="A">Section A</option>
+                            <option value="B">Section B</option>
+                            <option value="C">Section C</option>
+                            <option value="D">Section D</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentGender">Gender</label>
+                        <select id="studentGender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentDob">Date of Birth</label>
+                        <input type="date" id="studentDob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentContact">Contact Number</label>
+                        <input type="text" id="studentContact" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentEmail">Email Address</label>
+                        <input type="email" id="studentEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="studentAddress">Address</label>
+                        <input type="text" id="studentAddress">
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="cancelStudentBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Teacher Modal -->
+    <div id="teacherModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="teacherModalTitle">Add New Teacher</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="teacherForm">
+                <input type="hidden" id="teacherId">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="teacherName">Full Name</label>
+                        <input type="text" id="teacherName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherIdInput">Teacher ID</label>
+                        <input type="text" id="teacherIdInput" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherDepartment">Department</label>
+                        <select id="teacherDepartment" required>
+                            <option value="">Select Department</option>
+                            <option value="Science">Science</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Languages">Languages</option>
+                            <option value="Arts">Arts</option>
+                            <option value="Physical Education">Physical Education</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherSubject">Subject</label>
+                        <input type="text" id="teacherSubject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherGender">Gender</label>
+                        <select id="teacherGender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherContact">Contact Number</label>
+                        <input type="text" id="teacherContact" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherEmail">Email Address</label>
+                        <input type="email" id="teacherEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherQualification">Qualification</label>
+                        <input type="text" id="teacherQualification" required>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="cancelTeacherBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Teacher</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Announcement Modal -->
+    <div id="announcementModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="announcementModalTitle">Add New Announcement</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="announcementForm">
+                <input type="hidden" id="announcementId">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="announcementTitle">Title</label>
+                        <input type="text" id="announcementTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="announcementDate">Date</label>
+                        <input type="date" id="announcementDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="announcementAudience">Audience</label>
+                        <select id="announcementAudience" required>
+                            <option value="">Select Audience</option>
+                            <option value="All">All</option>
+                            <option value="Students">Students</option>
+                            <option value="Teachers">Teachers</option>
+                            <option value="Parents">Parents</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1">
+                        <label for="announcementContent">Content</label>
+                        <textarea id="announcementContent" required></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="cancelAnnouncementBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Announcement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Task Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="taskModalTitle">Add New Task</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="taskForm">
+                <input type="hidden" id="taskId">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="taskTitle">Title</label>
+                        <input type="text" id="taskTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskAssignee">Assigned To</label>
+                        <select id="taskAssignee" required>
+                            <option value="">Select Assignee</option>
+                            <option value="Admin Staff">Admin Staff</option>
+                            <option value="Teachers">Teachers</option>
+                            <option value="Support Staff">Support Staff</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDueDate">Due Date</label>
+                        <input type="date" id="taskDueDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskStatus">Status</label>
+                        <select id="taskStatus" required>
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1">
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" required></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="cancelTaskBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/Scripts/adminPanel.js"></script>
+   
+</body>
+</html>

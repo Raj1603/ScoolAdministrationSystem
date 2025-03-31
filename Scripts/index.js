@@ -1,47 +1,90 @@
-const darkModeToggle = document.getElementById("darkModeToggle");
-const body = document.body;
 
-// Check local storage for dark mode preference
-if (localStorage.getItem("darkMode") === "enabled") {
-    body.classList.add("dark-mode");
-    darkModeToggle.checked = true;
+// Dark/Light Mode Toggle
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('change', function() {
+    document.body.classList.toggle('dark-mode', this.checked);
+    localStorage.setItem('darkMode', this.checked);
+});
+
+// Check for saved user preference
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    themeToggle.checked = true;
 }
 
-darkModeToggle.addEventListener("change", () => {
-    if (darkModeToggle.checked) {
-        body.classList.add("dark-mode");
-        localStorage.setItem("darkMode", "enabled");
-    } else {
-        body.classList.remove("dark-mode");
-        localStorage.setItem("darkMode", "disabled");
-    }
-});
-
-
-document.getElementById("darkModeToggle").addEventListener("click", function() {
-    document.body.classList.toggle("dark-mode");
-    this.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-});
-
+// Carousel Functionality
+const carousel = document.querySelector('.carousel');
+const items = document.querySelectorAll('.carousel-item');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+const indicators = document.querySelectorAll('.indicator');
 
 let currentIndex = 0;
-const items = document.querySelectorAll(".carousel-item");
-const totalItems = items.length;
+const itemCount = items.length;
+let intervalId;
 
 function updateCarousel() {
-    const offset = -currentIndex * 100;
-    document.querySelector(".carousel-inner").style.transform = `translateX(${offset}%)`;
-}
-
-function prevSlide() {
-    currentIndex = (currentIndex === 0) ? totalItems - 1 : currentIndex - 1;
-    updateCarousel();
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentIndex);
+    });
 }
 
 function nextSlide() {
-    currentIndex = (currentIndex === totalItems - 1) ? 0 : currentIndex + 1;
+    currentIndex = (currentIndex + 1) % itemCount;
     updateCarousel();
 }
 
-// Auto slide every 3 seconds
-setInterval(nextSlide, 3000);
+function prevSlide() {
+    currentIndex = (currentIndex - 1 + itemCount) % itemCount;
+    updateCarousel();
+}
+
+function startAutoSlide() {
+    intervalId = setInterval(nextSlide, 3000);
+}
+
+function stopAutoSlide() {
+    clearInterval(intervalId);
+}
+
+// Event Listeners
+nextBtn.addEventListener('click', () => {
+    nextSlide();
+    stopAutoSlide();
+    startAutoSlide();
+});
+
+prevBtn.addEventListener('click', () => {
+    prevSlide();
+    stopAutoSlide();
+    startAutoSlide();
+});
+
+indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+        stopAutoSlide();
+        startAutoSlide();
+    });
+});
+
+// Start auto sliding
+startAutoSlide();
+
+// Pause on hover
+document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoSlide);
+document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoSlide);
+
+ // Smooth scrolling for anchor links
+ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
